@@ -1,0 +1,277 @@
+﻿CREATE DATABASE proj;
+use proj;
+CREATE TABLE foithths(username varchar(8) ,kodikos varchar(20) not null,onoma varchar(15),epitheto varchar(15),email varchar(30),eksamino int(2),pontoi int(2),primary key(kodikos),flag int(2));
+
+CREATE TABLE mathima(math_id int(3),onoma varchar(100),semester_id int(3),primary key(math_id));
+
+CREATE TABLE biblio(math_id int(3),name varchar(100),primary key(name),foreign key(math_id) references mathima(math_id));
+
+CREATE TABLE biblio_foit(kodikos varchar(20),name varchar(100),primary key(kodikos,name),foreign key(kodikos) references foithths(kodikos),foreign key(name) references biblio(name));
+
+use proj;
+delimiter //
+create trigger auksisi_last_id
+after insert on biblio_foit
+for each row
+begin
+update foithths
+set pontoi=pontoi - 5
+where kodikos=new.kodikos;
+END //
+DELIMITER ;
+
+
+insert into mathima values(1,'eisagogi',1);
+insert into mathima values(2,'programmatismos',1);
+insert into mathima values(3,'mathimatika',1);
+insert into mathima values(4,'gramiki',1);
+insert into mathima values(5,'algorithmiki',1);
+
+insert into mathima values(6,'cpp',2);
+insert into mathima values(7,'statistiki',2);
+insert into mathima values(8,'diakrita mathimatika',2);
+insert into mathima values(9,'domes dedomenon',2);
+insert into mathima values(10,'psifiaki sxediasi',2);
+
+insert into mathima values(11,'pliroforiaka susthmata',3);
+insert into mathima values(12,'leitourgika systhmata 1',3);
+insert into mathima values(13,'diktua ypologistwn',3);
+insert into mathima values(14,'baseis dedomenon 1',3);
+insert into mathima values(15,'arxitektoniki upologistwn',3);
+insert into mathima values(16,'algorithmoi kai poluplokothta',3);
+
+insert into mathima values(17,'texnologia logismikou',4);
+insert into mathima values(18,'sxediasmos psifiakon susthmatwn',4);
+insert into mathima values(19,'JAVA',4);
+insert into mathima values(20,'baseis dedomenon 2',4);
+insert into mathima values(21,'diktua ipologistwn',4);
+insert into mathima values(22,'leitourgika systhmata 2',4);
+
+insert into mathima values(23,'ipologistika systhmata',5);     //edo eimai
+insert into mathima values(24,'poiothta kai aksiopistia',5);
+insert into mathima values(25,'shmata kai systhmata',5);
+insert into mathima values(26,'metaglotistes',5);
+insert into mathima values(27,'eisagogi ston parallilo upologismo',5);
+insert into mathima values(28,'diktiakos programmatismos',5);
+insert into mathima values(29,'analush kai sxediash pliroforiakon systhmaton',5);
+insert into mathima values(30,'allhlepidrash',5);
+
+insert into mathima values(31,'psifiakes epikoinonies',6);   
+insert into mathima values(32,'texnhth noimosunh',6);
+insert into mathima values(33,'sxediasmos kai anapthksi pliroforiakon sustumaton',6);
+insert into mathima values(34,'proigmenh arxitektoniki upologiston',6);
+insert into mathima values(35,'neuronika diktia',6);
+insert into mathima values(36,'katanemhmena susthmata',6);
+insert into mathima values(37,'epeksergasia eikonas',6);
+insert into mathima values(38,'asfaleia sthn texnologia ths pliroforias',6);
+insert into mathima values(39,'anakthsh pliroforias',6);
+
+insert into mathima values(40,'texniki ths ekfrashs',7);
+insert into mathima values(41,'eksoriksi dedomenon',7);
+insert into mathima values(42,'hlektroniko emporio',7);
+insert into mathima values(43,'efuh susthmata',7);
+insert into mathima values(44,'epixeirhsiakh ereuna',7);
+insert into mathima values(45,'diktua kinhtwn epikoinwniwn',7);
+insert into mathima values(46,'grafika ipologistwn',7);
+insert into mathima values(47,'ari8mitiki analush kai efargmoges',7);
+
+
+
+
+insert into biblio values(1,'biblio eisagoghs 1');
+insert into biblio values(1,'biblio eisagoghs 2');
+insert into biblio values(1,'biblio eisagoghs 3');
+
+insert into biblio values(2,'biblio programmatismou 1');
+insert into biblio values(2,'biblio programmatismou 2');
+insert into biblio values(2'biblio programmatismou 3');
+
+insert into biblio values(3,'biblio mathimatikwn 1');
+insert into biblio values(3,'biblio mathimatikwn 2');
+insert into biblio values(3,'biblio mathimatikwn 3');
+
+
+insert into biblio values(4,'biblio grammikhs 1');
+insert into biblio values(4,'biblio grammikhs 2');
+insert into biblio values(4,'biblio grammikhs 3');
+
+insert into biblio values(5,'biblio algorithmikis 1');
+insert into biblio values(5,'biblio algorithmikis 2');
+insert into biblio values(5,'biblio algorithmikis 3');
+
+insert into biblio values(6,'biblio cpp 1');
+insert into biblio values(6,'biblio cpp 2');
+insert into biblio values(6,'biblio cpp 3');
+
+insert into biblio values(7,'biblio statistikhs 1');
+insert into biblio values(7,'biblio statistikhs 2');
+insert into biblio values(7,'biblio statistikhs 3');
+
+insert into biblio values(8,'biblio diakritwn 1');
+insert into biblio values(8,'biblio diakritwn 2');
+insert into biblio values(8,'biblio diakritwn 3');
+
+insert into biblio values(9,'biblio domwn 1');
+insert into biblio values(9,'biblio domwn 2');
+insert into biblio values(9,'biblio domwn 3');
+
+insert into biblio values(10,'biblio psifiakis 1');
+insert into biblio values(10,'biblio psifiakis 2');
+insert into biblio values(10,'biblio psifiakis 3');
+
+insert into biblio values(11,'biblio pliroforiakwn susthmaton 1');
+insert into biblio values(11,'biblio pliroforiakwn susthmaton 2');
+insert into biblio values(11,'biblio pliroforiakwn susthmaton 3');
+
+insert into biblio values(12,'biblio leitourgikwn 1');
+insert into biblio values(12,'biblio leitourgikwn 2');
+insert into biblio values(12,'biblio leitourgikwn 3');
+
+insert into biblio values(13,'biblio diktuwn 1');
+insert into biblio values(13,'biblio diktuwn 2');
+insert into biblio values(13,'biblio diktuwn 3');
+
+insert into biblio values(14,'biblio baseis1 dedomenon 1');
+insert into biblio values(14,'biblio baseis1 dedomenon 2');
+insert into biblio values(14,'biblio baseis1 dedomenon 3');
+
+insert into biblio values(15,'biblio arxitektonikhs 1');
+insert into biblio values(15,'biblio arxitektonikhs 2');
+insert into biblio values(15,'biblio arxitektonikhs 3');
+
+insert into biblio values(16,'biblio algorithmoi kai poliplokotita 1');
+insert into biblio values(16,'biblio algorithmoi kai poliplokotita 2');
+insert into biblio values(16,'biblio algorithmoi kai poliplokotita 3');
+
+insert into biblio values(17,'biblio texnologias logismikou 1');
+insert into biblio values(17,'biblio texnologias logismikou  2');
+insert into biblio values(17,'biblio texnologias logismikou  3');
+
+insert into biblio values(18,'biblio sxediasmou psifiakon sistimaton 1');
+insert into biblio values(18,'biblio sxediasmou psifiakon sistimaton 2');
+insert into biblio values(18,'biblio sxediasmou psifiakon sistimaton 3');
+
+insert into biblio values(19,'biblio java 1');
+insert into biblio values(19,'biblio java 2');
+insert into biblio values(19,'biblio java 3');
+
+insert into biblio values(20,'biblio baseis2 dedomenon1');
+insert into biblio values(20,'biblio baseis2 dedomenon 2');
+insert into biblio values(20,'biblio baseis2 dedomenon 3');
+
+insert into biblio values(21,'biblio diktuwn2 1');
+insert into biblio values(21,'biblio diktuwn2 2');
+insert into biblio values(21,'biblio diktuwn2 3');
+
+insert into biblio values(22,'biblio leitourgikon susthmaton 1');
+insert into biblio values(22,'biblio leitourgikon susthmaton 2');
+insert into biblio values(22,'biblio leitourgikon susthmaton 3');
+
+insert into biblio values(23,'biblio ipologistikwn 1');
+insert into biblio values(23,'biblio ipologistikwn 2');
+insert into biblio values(23,'biblio ipologistikwn 3');
+
+insert into biblio values(24,'biblio poiothtas kai aksiopistias 1');
+insert into biblio values(24,'biblio poiothtas kai aksiopistias 2');
+insert into biblio values(24,'biblio poiothtas kai aksiopistias 3');
+
+insert into biblio values(25,'biblio simata kai susthmata 1');
+insert into biblio values(25,'biblio simata kai susthmata  2');
+insert into biblio values(25,'biblio simata kai susthmata  3');
+
+insert into biblio values(26,'biblio metaglotistes 1');
+insert into biblio values(26,'biblio metaglotistes 2');
+insert into biblio values(26,'biblio metaglotistes  3');
+
+insert into biblio values(27,'biblio eisagogis ston parallilo 1');
+insert into biblio values(27,'biblio eisagogis ston parallilo 2');
+insert into biblio values(27,'biblio eisagogis ston parallilo 3');
+
+insert into biblio values(28,'biblio diktiakou programmatismou 1');
+insert into biblio values(28,'biblio diktiakou programmatismou  2');
+insert into biblio values(28,'biblio diktiakou programmatismou  3');
+
+insert into biblio values(29,'biblio analush k sxediashs pliroforiakon 1');
+insert into biblio values(29,'biblio analush k sxediashs pliroforiakon 2');
+insert into biblio values(29,'biblio analush k sxediashs pliroforiakon 3');
+
+insert into biblio values(30,'biblio allilepidrashs 1');
+insert into biblio values(30,'biblio allilepidrashs 2');
+insert into biblio values(30,'biblio allilepidrashs 3');
+
+insert into biblio values(31,'biblio psifiakon epikoinwniwn 1');
+insert into biblio values(31,'biblio psifiakon epikoinwniwn 2');
+insert into biblio values(31,'biblio psifiakon epikoinwniwn 3');
+
+insert into biblio values(32,'biblio texnhths 1');
+insert into biblio values(32,'biblio texnhths  2');
+insert into biblio values(32,'biblio texnhths  3');
+
+insert into biblio values(33,'biblio sxediasmou k anaptiksis 1');
+insert into biblio values(33,'biblio sxediasmou k anaptiksis 2');
+insert into biblio values(33,'biblio sxediasmou k anaptiksis 3');
+
+insert into biblio values(34,'biblio proigmenis arxitektonikis 1');
+insert into biblio values(34,'biblio proigmenis arxitektonikis 2');
+insert into biblio values(34,'biblio proigmenis arxitektonikis 3');
+
+insert into biblio values(35,'biblio neuronikon 1');
+insert into biblio values(35,'biblio neuronikon 2');
+insert into biblio values(35,'biblio neuronikon 3');
+
+insert into biblio values(36,'biblio katanemimenon 1');
+insert into biblio values(36,'biblio katanemimenon 2');
+insert into biblio values(36,'biblio katanemimenon 3');
+
+insert into biblio values(37,'biblio epeksergasia eikonas 1');
+insert into biblio values(37,'biblio epeksergasia eikonas 2');
+insert into biblio values(37,'biblio epeksergasia eikonas 3');
+
+insert into biblio values(38,'biblio asfaleia 1');
+insert into biblio values(38,'biblio asfaleia 2');
+insert into biblio values(38,'biblio asfaleia 3');
+
+insert into biblio values(39,'biblio anakthshs 1');
+insert into biblio values(39,'biblio anakthshs 2');
+insert into biblio values(39,'biblio anakthshs 3');
+
+insert into biblio values(40,'biblio texnikis ekfrasis 1');
+insert into biblio values(40,'biblio texnikis ekfrasis 2');
+insert into biblio values(40,'biblio texnikis ekfrasis 3');
+
+insert into biblio values(41,'biblio eksoriksis 1');
+insert into biblio values(41,'biblio eksoriksis 2');
+insert into biblio values(41,'biblio eksoriksis 3');
+
+insert into biblio values(42,'biblio ilektroniko emporio 1');
+insert into biblio values(42,'biblio ilektroniko emporio 2');
+insert into biblio values(42,'biblio ilektroniko emporio 3');
+
+insert into biblio values(43,'biblio efuh sistimata 1');
+insert into biblio values(43,'biblio efuh sistimata 2');
+insert into biblio values(43,'biblio efuh sistimata 3');
+
+insert into biblio values(44,'biblio epixeirhsiakhs ereunas 1');
+insert into biblio values(44,'biblio epixeirhsiakhs ereunas 2');
+insert into biblio values(44,'biblio epixeirhsiakhs ereunas 3');
+
+insert into biblio values(45,'biblio diktiwn kiniton epikinonion 1');
+insert into biblio values(45,'biblio diktiwn kiniton epikinonion 2');
+insert into biblio values(45,'biblio diktiwn kiniton epikinonion 3');
+
+insert into biblio values(46,'biblio grafika ipologiston 1');
+insert into biblio values(46,'biblio grafika ipologiston 2');
+insert into biblio values(46,'biblio grafika ipologiston 3');
+
+insert into biblio values(47,'biblio arithmitiki analush k efarmoges 1');
+insert into biblio values(47,'biblio arithmitiki analush k efarmoges 2');
+insert into biblio values(47,'biblio arithmitiki analush k efarmoges 3');
+
+
+
+
+
+
+
+
+
